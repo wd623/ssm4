@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zr.dao.IRoleDao">
+    <select id="findRoleIdsByUserId" resultType="int" parameterType="int">
+        select roleId from user_role where userId=#{id}
+    </select>
+    <select id="findNotRoleByUserId" resultType="role" parameterType="int">
+        select * from tb_role where id not in (select roleId from user_role where userId = #{id})
+    </select>
+</mapper>
